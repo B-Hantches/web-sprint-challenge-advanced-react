@@ -59,6 +59,8 @@ export default function AppFunctional(props) {
   function onSubmit(evt) {
     evt.preventDefault();
     // Implement POST request logic here
+
+    setMessage(`Email submitted: ${email}`);
     console.log('Email submitted:', email);
   }
 

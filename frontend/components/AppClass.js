@@ -71,6 +71,8 @@ class AppClass extends Component {
   onSubmit(evt) {
     evt.preventDefault();
     // Implement POST request logic here
+
+    this.setState({ message: 'Email submitted' });
     console.log('Email submitted:', this.state.email);
   }
 
