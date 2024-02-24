@@ -1,7 +1,8 @@
 import server from './backend/mock-server'
 import React from 'react'
 import AppFunctional from './frontend/components/AppFunctional'
-import AppClass from './frontend/components/AppClass'
+// ❗ class component is optional, uncomment next line to test
+// import AppClass from './frontend/components/AppClass'
 import { render, fireEvent, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
@@ -41,20 +42,22 @@ const testSquares = (squares, activeIdx) => {
   })
 }
 
-test('AppFunctional is a functional component, Review how to build a functional component, including useState and passing props.', () => {
+test('AppFunctional is a functional component', () => {
   expect(
     AppFunctional.prototype &&
     AppFunctional.prototype.isReactComponent
   ).not.toBeTruthy()
-})
-test('AppClass is a class-based component, Review how to build a class-based component, such as using “extends”, and constructors', () => {
-  expect(
-    AppClass.prototype &&
-    AppClass.prototype.isReactComponent
-  ).toBeTruthy()
 });
+// ❗ class component is optional, uncomment next lines to test
+// test('AppClass is a class-based component', () => {
+//   expect(
+//     AppClass.prototype &&
+//     AppClass.prototype.isReactComponent
+//   ).toBeTruthy()
+// });
 
-[AppFunctional, AppClass].forEach((Component, idx) => {
+// ❗ class component is optional, uncomment AppClass to test
+[AppFunctional, /* AppClass */].forEach((Component, idx) => {
   const label = idx === 0 ? 'FUNCTIONAL' : 'CLASS-BASED'
 
   describe(`${label}`, () => {
@@ -70,7 +73,7 @@ test('AppClass is a class-based component, Review how to build a class-based com
       document.body.innerHTML = ''
     })
 
-    describe(`[A ${label}] Active Square, Review how to set a class name and use ternary statements, as well as how to set, manipulate, and read pieces of state. Also review how to handle user interaction.`, () => {
+    describe(`[A ${label}] Active Square`, () => {
       test(`[A1 ${label}] Actions: none (Initial State of <App />)
           Active Square should be index 4`, () => {
         testSquares(squares, 4)
@@ -151,7 +154,7 @@ test('AppClass is a class-based component, Review how to build a class-based com
         testSquares(squares, 6)
       })
     })
-    describe(`[B ${label}] Coordinates Readout, Review how to set, manipulate, and display pieces of state, and handle user interaction.`, () => {
+    describe(`[B ${label}] Coordinates Readout`, () => {
       test(`[B1] Actions: none (Initial State of <App />)
           Coordinates should be (2,2)`, () => {
         expect(coordinates.textContent).toMatch(/\(2.*2\)$/)
@@ -232,7 +235,7 @@ test('AppClass is a class-based component, Review how to build a class-based com
         expect(coordinates.textContent).toMatch(/\(1.*3\)$/)
       })
     })
-    describe(`[C ${label}] Limit Reached Message, Review how to set, manipulate, and display pieces of state, and handle user interaction.`, () => {
+    describe(`[C ${label}] Limit Reached Message`, () => {
       test(`[C1 ${label}] Actions: none (Initial State of <App />)
           Limit reached message should be empty`, () => {
         expect(message.textContent).toBeFalsy()
@@ -313,7 +316,7 @@ test('AppClass is a class-based component, Review how to build a class-based com
         expect(message.textContent).toBe("You can't go left")
       })
     })
-    describe(`[D ${label}] Steps Counter,  Review how to set, manipulate, and display pieces of state, and handle user interaction.`, () => {
+    describe(`[D ${label}] Steps Counter`, () => {
       test(`[D1 ${label}] Steps counter works correctly`, () => {
         expect(steps.textContent).toBe("You moved 0 times")
         fireEvent.click(up)
@@ -339,7 +342,7 @@ test('AppClass is a class-based component, Review how to build a class-based com
         expect(steps.textContent).toBe("You moved 1 time")
       })
     })
-    describe(`[E ${label}] Reset Button, Review how to set, manipulate, and display pieces of state, and handle user interaction.`, () => {
+    describe(`[E ${label}] Reset Button`, () => {
       test(`[E1 ${label}] Active Square is reset`, () => {
         fireEvent.click(up)
         fireEvent.click(up)

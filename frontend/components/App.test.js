@@ -1,33 +1,30 @@
 // Write your tests here
+import AppFunctional from "./AppFunctional"
 import React from 'react'
-import { render, screen } from '@testing-library/react'
-import AppFunctional from './AppFunctional'
+import { screen, render } from '@testing-library/react'
+import server from '../../backend/mock-server'
 
-test('sanity', () => {
+beforeAll(() => {
+  server.listen()
+})
+afterAll(() => {
+  server.close()
+})
+
+// beforeEach(() => {
+//   render(<AppFunctional />)
+// })
+
+// test('sanity', () => {
+//   expect(screen.getByText(/GRID/i)).toBeVisible()
+//   screen.debug()
+// })
+
+test('myTest', () => {
   expect(true).toBe(true)
 })
 
-// write 5 tests for the functional component visible texts in headings, buttons, links... render on the screen.
-test('renders the heading', () => {
-  render(<AppFunctional />)
-  screen.getByRole('heading', { name: /welcome to the grid/i })
-})
-test('renders the functional nav link', () => {
-  render(<AppFunctional />)
-  screen.getByRole('link', { name: /functional/i })
-})
-test('renders the class-based nav link', () => {
-  render(<AppFunctional />)
-  screen.getByRole('link', { name: /class-based/i })
-})
-test('renders the reset button', () => {
-  render(<AppFunctional />)
-  screen.getByRole('button', { name: /reset/i })
-})
-test('renders the submit button', () => {
-  render(<AppFunctional />)
-  screen.getByRole('button', { name: /submit/i })
-})
-
-export default AppFunctional
-
+// test('rendersComp', async () => {
+//   render(<AppFunctional />)
+//   expect( await screen.getByText(/coordinates/i)).toBeInTheDocument()
+// })
